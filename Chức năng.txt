@@ -1,0 +1,71 @@
+Bảng Role
++ Hiển thị
+
+Bảng Users
++ Hiển thị
++ Thêm, xóa, sửa
++ Phân loại theo Role
+
+Bảng VerityMoney
++ Hiển thị
++ Thêm, xóa
+
+Bảng Supplier
++ Hiển thị
++ Thêm, xóa, sửa
+
+Bảng CategoryProduct
++ Hiển thị
++ Thêm, xóa, sửa
+
+Bảng VerityMoney
++ Hiển thị
++ Thêm, xóa
+
+Bảng Products
++ Hiển thị 
++ Thêm, xóa, sửa
++ Phân loại theo danh mục
+
+Bảng Cart
++ Hiển thị 
++ Thêm, xóa, sửa
+
+Bảng CartDetails
++ Hiển thị 
++ Thêm, xóa, sửa
+
+Bảng Bill
++ Hiển thị 
++ Thêm, xóa
+
+Bảng BillDetails
++ Hiển thị 
++ Thêm, xóa
+
+Tìm kiếm 
++ Tìm kiếm theo tên sản phẩm, danh mục sản phẩm và giá sản phẩm
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
