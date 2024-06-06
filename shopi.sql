@@ -156,6 +156,10 @@ INSERT INTO Supplier (SupplierName, Address, Status) VALUES
 ('Realme', '606 Trung Quốc', 'Inactive'),
 ('Transsion', '707 Trung Quốc', 'Inactive');
 
+INSERT INTO Supplier (SupplierName, Address, Status) VALUES
+('Asus', '521 Đài Loan', 'Active'),
+('Acer', '305 Đài Loan', 'Active');
+
 select * from Supplier;
 
 INSERT INTO CategoryProduct (CategoryName, Description, Status) VALUES
