@@ -51,20 +51,6 @@ CREATE TABLE CategoryProduct(
  Status ENUM('Active', 'Inactive') DEFAULT 'Active'
 );
 
-CREATE TABLE VerityProduct(
-	VerityProductID INT PRIMARY KEY AUTO_INCREMENT,
-	UserID INT NOT NULL,
-	SupplierID INT NOT NULL,
-	CategoryID INT NOT NULL,
-	ProductName VARCHAR(50) NOT NULL UNIQUE,
-	Status ENUM('Active', 'Inactive') DEFAULT 'Active',
-    
-    foreign key (UserID) references User (UserID),
-    foreign key (SupplierID) references Supplier (SupplierID),
-    foreign key (CategoryID) references CategoryProduct (CategoryID)
-
-);
-
 CREATE TABLE Products(
 	ProductID INT PRIMARY KEY AUTO_INCREMENT,
 	ProductName VARCHAR(50) NOT NULL UNIQUE,
@@ -83,7 +69,7 @@ CREATE TABLE Cart(
 	CartID INT PRIMARY KEY AUTO_INCREMENT,
 	UserID INT NOT NULL,
 	QuantityProduct INT NOT NULL CHECK (QuantityProduct > 0),
-	TotalPrice double DEFAULT 0.00,
+	TotalPrice double,
     
     foreign key (UserID) references User (UserID)
 );
@@ -131,15 +117,15 @@ select * from role;
 -- Thêm 10 dữ liệu vào bảng User
 INSERT INTO User (Username, Password, FullName, RoleID, DateOfBirth, Gender, Email, PhoneNumber, Address, Wallet, Status) VALUES
 ('an1109', '0123', 'Phạm Hoàng An', 1, '2001-11-09', 'Male', 'phamhoangan1109@gmail.com', 1234567890, '123 Quận 7',900000, 'Active'),
-('tri0311', '1234', 'Nguyễn Hữu Trí', 2, '2003-11-03', 'Male', 'nguyenhuutri0311@gamil.com', 2345678901, '456 banahiu', 150500, 'Active'),
-('tien2612', '1234', 'Khúc Thị Thủy Tiên', 2, '1985-12-26', 'Female', 'khucthithuytien2612@gamil.com', 3456789012, '789 Hà Nội', 200000, 'Active'),
-('long1910', '1234', 'Nguyễn Danh Long', 2, '2000-10-19', 'Male', 'nguyendanhlong1910@gmail.com', 4567890123, '101 Pine St', 250000, 'Inactive'),
-('sanh0509', '2345', 'Mai Văn Sanh', 3, '1993-09-05', 'Male', 'maivansanhsanh0509@gmail.com', 5678901234, '202 tp Thủ Đức', 0, 'Active'),
-('hung2310', '2345', 'Kiều Hưng', 3, '2006-10-23', 'Male', 'kieuhung2310@gmailcom', 6789012345, '303 Hà Đông', 0, 'Active'),
-('quang1508', '2345', 'Nguyễn Phú Quang', 3, '2002-08-15', 'Male', 'nguyenphuquang1508@gmail.com', 7890123456, '404 Tân bình', 0, 'Active'),
-('thanh1012', '2345', 'Sĩ Thanh', 3, '1986-12-10', 'Female', 'sithanh1012@gmail.com', 8901234567, '505 Quận 3', 0, 'Active'),
-('trung3110', '2345', 'Trần Quốc Trung', 3, '1994-10-31', 'Male', 'tranquoctrung3110@gmail.com', 9012345678, '606 Tân Phú', 0, 'Active'),
-('trinh2709', '2345', 'Trần Thị Ngọc Trinh', 3, '1989-09-27', 'Female', 'tranthingoctrinh2709@gmail.com', 1230987654, '707 Quận 2', 0, 'Inactive');
+('tri0311', '1234', 'Nguyễn Hữu Trí', 3, '2003-11-03', 'Male', 'nguyenhuutri0311@gamil.com', 2345678901, '456 banahiu', 150500, 'Active'),
+('tien2612', '1234', 'Khúc Thị Thủy Tiên', 3, '1985-12-26', 'Female', 'khucthithuytien2612@gamil.com', 3456789012, '789 Hà Nội', 200000, 'Active'),
+('long1910', '1234', 'Nguyễn Danh Long', 3, '2000-10-19', 'Male', 'nguyendanhlong1910@gmail.com', 4567890123, '101 Pine St', 250000, 'Inactive'),
+('sanh0509', '2345', 'Mai Văn Sanh', 2, '1993-09-05', 'Male', 'maivansanhsanh0509@gmail.com', 5678901234, '202 tp Thủ Đức', 0, 'Active'),
+('hung2310', '2345', 'Kiều Hưng', 2, '2006-10-23', 'Male', 'kieuhung2310@gmailcom', 6789012345, '303 Hà Đông', 0, 'Active'),
+('quang1508', '2345', 'Nguyễn Phú Quang', 2, '2002-08-15', 'Male', 'nguyenphuquang1508@gmail.com', 7890123456, '404 Tân bình', 0, 'Active'),
+('thanh1012', '2345', 'Sĩ Thanh', 2, '1986-12-10', 'Female', 'sithanh1012@gmail.com', 8901234567, '505 Quận 3', 0, 'Active'),
+('trung3110', '2345', 'Trần Quốc Trung', 2, '1994-10-31', 'Male', 'tranquoctrung3110@gmail.com', 9012345678, '606 Tân Phú', 0, 'Active'),
+('trinh2709', '2345', 'Trần Thị Ngọc Trinh', 2, '1989-09-27', 'Female', 'tranthingoctrinh2709@gmail.com', 1230987654, '707 Quận 2', 0, 'Inactive');
 
 
 select * from User;
@@ -238,4 +224,18 @@ INSERT INTO Products (ProductName, CategoryID, SupplierID, Price, Quantity, Desc
 
 select * from Products;
 
-truncate table Products;
+INSERT INTO Cart (UserID, QuantityProduct, TotalPrice) VALUES
+(5, 3, 89970000.00),
+(6, 2, 24890000.00),
+(7, 4, 29990000.00),
+(9, 5, 16990000.00);
+
+select * from Cart;
+
+INSERT INTO CartDetails (CartID, ProductID, Quantity, Price) VALUES 
+(1, 1, 3, 29990000.00), 
+(2, 2, 1, 20990000.00), 
+(2, 45, 1, 3499000.00), 
+(3, 3, 2, 12990000.00), 
+(3, 1, 1, 10495000.00), 
+(3, 1, 1, 7497500.00);
