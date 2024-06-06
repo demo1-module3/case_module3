@@ -251,7 +251,7 @@ INSERT INTO Bill (UserID, TotalAmount ,BillDate) VALUES
 
 select * from Bill;
 
-INSERT INTO BillDetail(BillID, ProductID, Quantity, Price, TotalPrice) VALUE
+INSERT INTO BillDetail(BillID, ProductID, Quantity, Price, TotalPrice) VALUES
 (1, 1, 3, 29990000.00, 89970000.00), 
 (2, 39, 1, 3999000.00, 3999000.00), 
 (2, 31, 3, 799000.00, 239700.00), 
@@ -260,3 +260,8 @@ INSERT INTO BillDetail(BillID, ProductID, Quantity, Price, TotalPrice) VALUE
 (3, 44, 1, 299000.00, 299000.00),
 (4, 45, 1, 3499000.00, 3499000.00), 
 (4, 3, 2, 12990000.00, 25980000.00); 
+
+insert into veritymoney (UserID, Money) values
+(4, 200000.00),
+(6, 300000.00),
+(9, 500000.00);
