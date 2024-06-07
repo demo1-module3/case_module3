@@ -8,7 +8,7 @@ public interface IGenericModel<Generic> {
 
     public Generic selectById(int id);
 
-    public List<Generic> selectAll();
+    public List<Generic> selectAll() throws SQLException;
 
     public boolean deleteById(int id) throws SQLException;
 

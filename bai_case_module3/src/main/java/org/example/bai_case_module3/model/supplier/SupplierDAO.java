@@ -20,7 +20,18 @@ public class SupplierDAO implements ISupplierDAO{
         this.connection = dbConnection.getConnection();
     }
 
-    public List<Supplier> getAllSupplier() throws SQLException{
+    @Override
+    public void insertInto(Supplier supplier) throws SQLException {
+
+    }
+
+    @Override
+    public Supplier selectById(int id) {
+        return null;
+    }
+
+    @Override
+    public List<Supplier> selectAll() throws SQLException {
         List<Supplier> suppliers = new ArrayList<>();
         String sql = "SELECT * FROM Supplier";
 
@@ -47,28 +58,13 @@ public class SupplierDAO implements ISupplierDAO{
     public static void main(String[] args) {
         SupplierDAO supplierDAO = new SupplierDAO();
         try {
-            List<Supplier> suppliers = supplierDAO.getAllSupplier();
+            List<Supplier> suppliers = supplierDAO.selectAll();
             for (Supplier supplier : suppliers) {
                 System.out.println(supplier);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void insertInto(Supplier supplier) throws SQLException {
-
-    }
-
-    @Override
-    public Supplier selectById(int id) {
-        return null;
-    }
-
-    @Override
-    public List<Supplier> selectAll() {
-        return null;
     }
 
     @Override

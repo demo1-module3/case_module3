@@ -12,6 +12,8 @@
 <a href="category/list">danh sách danh muc san pham</a>
 <hr>
 <a href="supplier/list">danh sách Nha san xuat</a>
+<hr>
+<a href="verityMoney/list">danh sách verityMoney</a>
 
 </body>
 </html>

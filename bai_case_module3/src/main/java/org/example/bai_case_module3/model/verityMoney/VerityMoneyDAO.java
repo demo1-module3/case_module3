@@ -18,7 +18,19 @@ public class VerityMoneyDAO implements IVerityMoneyDAO {
         this.connection = dbConnection.getConnection();
     }
 
-    public List<VerityMoney> getAllVerMoney() throws SQLException {
+    @Override
+    public void insertInto(VerityMoney verityMoney) throws SQLException {
+
+    }
+
+    @Override
+    public VerityMoney selectById(int id) {
+        return null;
+    }
+
+    @Override
+    public List<VerityMoney> selectAll() throws SQLException {
+
         List<VerityMoney> verityMoneys = new ArrayList<VerityMoney>();
         String sql = "call select_all_VerityMoney();";
 
@@ -37,38 +49,21 @@ public class VerityMoneyDAO implements IVerityMoneyDAO {
                 verityMoneys.add(verityMoney);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
             throw new SQLException("Lỗi khi truy xuất sản phẩm danh mục", e);
         }
-
         return verityMoneys;
     }
 
     public static void main(String[] args) {
         VerityMoneyDAO verityMoneyDAO = new VerityMoneyDAO();
         try {
-            List<VerityMoney> verityMoneys = verityMoneyDAO.getAllVerMoney();
+            List<VerityMoney> verityMoneys = verityMoneyDAO.selectAll();
             for (VerityMoney verityMoney : verityMoneys) {
                 System.out.println(verityMoney);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    @Override
-    public void insertInto(VerityMoney verityMoney) throws SQLException {
-
-    }
-
-    @Override
-    public VerityMoney selectById(int id) {
-        return null;
-    }
-
-    @Override
-    public List<VerityMoney> selectAll() {
-        return null;
     }
 
     @Override

@@ -23,7 +23,7 @@ public class SupplierService {
     public void renderPageListBook(HttpServletRequest request,
                                    HttpServletResponse response) throws ServletException, IOException, SQLException {
         // goi model de lay data
-        List<Supplier> suppliers = this.supplierDAO.getAllSupplier();
+        List<Supplier> suppliers = this.supplierDAO.selectAll();
         // gan data vao requet de gui xuong view
         request.setAttribute("suppliers", suppliers);
         RequestDispatcher out = request.getRequestDispatcher("/views/supplierView/list.jsp");
