@@ -1,6 +1,6 @@
 plugins {
   id 'java'
-  id 'application'
+  id 'war'
 }
 
 group 'org.example'
@@ -29,8 +29,9 @@ dependencies {
   testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:${junitVersion}"
 }
 
+
 application {
-  mainClass = 'org.example.bai_case_module3.model.cartDetail.CartDetailDAO'
+  mainClass = 'org.example.bai_case_module3.model.products.ProductDAO'
 }
 
 test {
