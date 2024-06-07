@@ -30,9 +30,9 @@ dependencies {
 }
 
 
-application {
-  mainClass = 'org.example.bai_case_module3.model.products.ProductDAO'
-}
+//application {
+//  mainClass = 'org.example.bai_case_module3.model.products.ProductDAO'
+//}
 
 test {
   useJUnitPlatform()
