@@ -4,7 +4,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-**/src/main/java/org/example/bai_case_module3/database
+**/src/main/java/org/example/bai_case_module3/database/
 bai_case_module3/src/main/java/org/example/bai_case_module3/database
 ### IntelliJ IDEA ###
 .idea/modules.xml
