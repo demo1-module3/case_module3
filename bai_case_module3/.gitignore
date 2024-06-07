@@ -4,7 +4,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-src/main/java/org/example/bai_case_module3/database/DBConnect.java
+/src/main/java/org/example/bai_case_module3/database/DBConnect.java
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
