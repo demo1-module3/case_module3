@@ -60,6 +60,19 @@ public class User {
         this.status = status;
     }
 
+    public User(String username, String fullName, Role roleId, Date dateOfBirth, Gender gender, String email, String phoneNumber, String address, Double wallet, Status status) {
+        this.username = username;
+        this.fullName = fullName;
+        this.roleId = roleId;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.address = address;
+        this.wallet = wallet;
+        this.status = status;
+    }
+
     public int getUserId() {
         return userId;
     }
