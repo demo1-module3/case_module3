@@ -30,7 +30,7 @@ dependencies {
 }
 
 application {
-  mainClass = 'org.example.bai_case_module3.model.products.ProductDAO'
+  mainClass = 'org.example.bai_case_module3.model.cartDetail.CartDetailDAO'
 }
 
 test {
