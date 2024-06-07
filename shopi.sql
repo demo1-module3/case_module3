@@ -332,7 +332,16 @@ delimiter ;
 call select_all_bill();
 
 
+delimiter //
+create procedure select_all_VerityMoney()
+begin
+	select VerityMoneyID, us.FullName, Money, vrmn.status
+	from VerityMoney vrmn
+	inner join user us on us.userid = vrmn.userid;
+end //
+delimiter ;
 
+call select_all_VerityMoney();
 
 
 
