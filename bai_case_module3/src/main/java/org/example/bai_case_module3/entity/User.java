@@ -14,9 +14,17 @@ public class User {
     private String phoneNumber;
     private String address;
     private Double wallet;
-    private Status status= Status.ACTIVE;
+    private Status status= Status.Active;
 
     public User() {
+    }
+
+    public User(int userId) {
+        this.userId = userId;
+    }
+
+    public User(String fullName) {
+        this.fullName = fullName;
     }
 
     public User(String username, String password, String fullName, Role roleId, Date dateOfBirth, Gender gender, String email, String phoneNumber, String address, Double wallet, Status status) {

@@ -9,6 +9,14 @@ public class CategoryProduct {
     public CategoryProduct() {
     }
 
+    public CategoryProduct(int categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public CategoryProduct(String categoryName) {
+        this.categoryName = categoryName;
+    }
+
     public CategoryProduct(String categoryName, String description) {
         this.categoryName = categoryName;
         this.description = description;
@@ -58,4 +66,5 @@ public class CategoryProduct {
     public void setStatus(Status status) {
         this.status = status;
     }
+
 }

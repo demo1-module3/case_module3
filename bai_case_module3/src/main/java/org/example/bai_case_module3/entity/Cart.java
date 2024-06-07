@@ -9,6 +9,10 @@ public class Cart {
     public Cart() {
     }
 
+    public Cart(int cartId) {
+        this.cartId = cartId;
+    }
+
     public Cart(User userId, int quantityProduct, Double totalPrice) {
         this.userId = userId;
         this.quantityProduct = quantityProduct;
@@ -52,5 +56,15 @@ public class Cart {
 
     public void setTotalPrice(Double totalPrice) {
         this.totalPrice = totalPrice;
+    }
+
+    @Override
+    public String toString() {
+        return "Cart{" +
+                "cartId=" + cartId +
+                ", userId=" + userId +
+                ", quantityProduct=" + quantityProduct +
+                ", totalPrice=" + totalPrice +
+                '}';
     }
 }
