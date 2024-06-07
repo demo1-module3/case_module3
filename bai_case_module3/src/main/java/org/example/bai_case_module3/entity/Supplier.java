@@ -9,6 +9,14 @@ public class Supplier {
     public Supplier() {
     }
 
+    public Supplier(int supplierId) {
+        this.supplierId = supplierId;
+    }
+
+    public Supplier(String supplierName) {
+        this.supplierName = supplierName;
+    }
+
     public Supplier(String supplierName, String address) {
         this.supplierName = supplierName;
         this.address = address;
