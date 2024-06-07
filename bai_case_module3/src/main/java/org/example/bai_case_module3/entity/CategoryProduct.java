@@ -66,4 +66,5 @@ public class CategoryProduct {
     public void setStatus(Status status) {
         this.status = status;
     }
+
 }

@@ -9,7 +9,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%List<CategoryProduct> categoryProducts = (List<CategoryProduct>) request.getAttribute("categoryProducts"); %>
+<%List<CategoryProduct> categoryProducts = (List<CategoryProduct>) request.getAttribute("categories"); %>
 <html>
     <head>
         <title>Title</title>
@@ -24,14 +24,14 @@
                 <th>status</th>
             </tr>
             <c:set var="i" value="1"/>
-            <c:forEach items="${categoryProducts}" var="CategoryProduct">
+            <c:forEach items="${categoryProducts}" var="categoryProducts">
             <tr>
-                <td><c:out value="${CategoryProduct.categoryId}"/></td>
-                <td><c:out value="${CategoryProduct.categoryName}"/> </td>
-                <td><c:out value="${CategoryProduct.description}"/> </td>
-                <td><c:out value="${CategoryProduct.status1}"/> </td>
+                <td><c:out value="${i}"/></td>
+                <td><c:out value="${categoryProducts.categoryName}"/> </td>
+                <td><c:out value="${categoryProducts.description}"/> </td>
+                <td><c:out value="${categoryProducts.status}"/> </td>
             </tr>
-                <c:set var="i" value="i + 1"/>
+                <c:set var="i" value="${i + 1}"/>
             </c:forEach>
         </table>
     </body>

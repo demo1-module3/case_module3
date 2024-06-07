@@ -8,6 +8,10 @@
 <h1><%= "Hello World!" %></h1>
 <br/>
 <a href="hello-servlet">Hello Servlet</a>
-<a href="views/categoryView/list.jsp">danh sách categoryView</a>
+<hr>
+<a href="category/list">danh sách danh muc san pham</a>
+<hr>
+<a href="supplier/list">danh sách Nha san xuat</a>
+
 </body>
 </html>
