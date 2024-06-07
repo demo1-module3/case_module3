@@ -3,6 +3,7 @@ package org.example.bai_case_module3.entity;
 public class Products {
     private int productId;
     private String productName;
+    private User userId;
     private CategoryProduct categoryId;
     private Supplier supplierId;
     private Double price;
@@ -13,8 +14,9 @@ public class Products {
     public Products() {
     }
 
-    public Products(String productName, CategoryProduct categoryId, Supplier supplierId, Double price, int quantity, String description) {
+    public Products(String productName, User userId, CategoryProduct categoryId, Supplier supplierId, Double price, int quantity, String description) {
         this.productName = productName;
+        this.userId = userId;
         this.categoryId = categoryId;
         this.supplierId = supplierId;
         this.price = price;
@@ -22,8 +24,9 @@ public class Products {
         this.description = description;
     }
 
-    public Products(String productName, CategoryProduct categoryId, Supplier supplierId, Double price, int quantity, String description, Status status) {
+    public Products(String productName, User userId, CategoryProduct categoryId, Supplier supplierId, Double price, int quantity, String description, Status status) {
         this.productName = productName;
+        this.userId = userId;
         this.categoryId = categoryId;
         this.supplierId = supplierId;
         this.price = price;
@@ -32,9 +35,10 @@ public class Products {
         this.status = status;
     }
 
-    public Products(int productId, String productName, CategoryProduct categoryId, Supplier supplierId, Double price, int quantity, String description, Status status) {
+    public Products(int productId, String productName, User userId, CategoryProduct categoryId, Supplier supplierId, Double price, int quantity, String description, Status status) {
         this.productId = productId;
         this.productName = productName;
+        this.userId = userId;
         this.categoryId = categoryId;
         this.supplierId = supplierId;
         this.price = price;
@@ -57,6 +61,14 @@ public class Products {
 
     public void setProductName(String productName) {
         this.productName = productName;
+    }
+
+    public User getUserId() {
+        return userId;
+    }
+
+    public void setUserId(User userId) {
+        this.userId = userId;
     }
 
     public CategoryProduct getCategoryId() {
@@ -105,5 +117,20 @@ public class Products {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Products{" +
+                "productId=" + productId +
+                ", productName='" + productName + '\'' +
+                ", userId=" + userId +
+                ", categoryId=" + categoryId +
+                ", supplierId=" + supplierId +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", description='" + description + '\'' +
+                ", status=" + status +
+                '}';
     }
 }
