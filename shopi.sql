@@ -1,4 +1,3 @@
-
 CREATE DATABASE Shopi;
 
 use Shopi;
@@ -54,6 +53,7 @@ CREATE TABLE CategoryProduct(
 CREATE TABLE Products(
 	ProductID INT PRIMARY KEY AUTO_INCREMENT,
 	ProductName VARCHAR(50) NOT NULL UNIQUE,
+    UserID INT NOT NULL,
 	CategoryID INT NOT NULL,
 	SupplierID INT NOT NULL,
 	Price double DEFAULT 0.00,
@@ -61,6 +61,7 @@ CREATE TABLE Products(
 	Description VARCHAR(255),
 	Status ENUM('Active', 'Inactive') DEFAULT 'Active',
     
+    foreign key (UserID) references User (UserID),
     foreign key (SupplierID) references Supplier (SupplierID),
     foreign key (CategoryID) references CategoryProduct (CategoryID)
 );
@@ -159,68 +160,68 @@ INSERT INTO CategoryProduct (CategoryName, Description, Status) VALUES
 
 select * from CategoryProduct;
 
-INSERT INTO Products (ProductName, CategoryID, SupplierID, Price, Quantity, Description, Status) VALUES
+INSERT INTO Products (ProductName, UserID, CategoryID, SupplierID, Price, Quantity, Description, Status) VALUES
 -- Mobile Phones (15)
-('iPhone 15 Pro Max', 1, 1, 29990000.00, 50, 'Điện thoại Apple iPhone 15 Pro Max 512G', 'Active'),
-('Samsung Galaxy S21', 1, 2, 20990000.00, 40, 'Điện thoại Samsung Galaxy S21', 'Active'),
-('OPPO Reno6', 1, 4, 12990000.00, 60, 'Điện thoại OPPO Reno6', 'Active'),
-('Xiaomi Mi 11', 1, 3, 17990000.00, 30, 'Điện thoại Xiaomi Mi 11', 'Active'),
-('Vivo V21', 1, 5, 10990000.00, 45, 'Điện thoại Vivo V21', 'Active'),
-('Xiaomi Redmi Note 13 Pro', 1, 3, 8990000.00, 55, 'Điện thoại Xiaomi Redmi Note 13 Pro 8GB/128GB', 'Active'),
-('Nokia X10', 1, 7, 7990000.00, 35, 'Điện thoại Nokia X10', 'Active'),
-('Samsung Galaxy Z Fold5', 1, 2, 20990000.00, 25, 'Điện thoại Samsung Galaxy Z Fold5 5G 12GB/256GB', 'Active'),
-('iPhone 14 Pro Max', 1, 1, 24990000.00, 20, 'Điện thoại iPhone 14 Pro Max 1T', 'Active'),
-('Xiaomi 14 Ultra', 1, 3, 18990000.00, 40, 'Điện thoại Xiaomi 14 Ultra 16GB/512GB', 'Active'),
-('Huawei P40 Pro', 1, 8, 21990000.00, 30, 'Điện thoại Huawei P40 Pro', 'Active'),
-('Asus ROG Phone 5', 1, 12, 29990000.00, 15, 'Điện thoại Asus ROG Phone 5', 'Active'),
-('Xiaomi Redmi Note 10', 1, 3, 5990000.00, 70, 'Điện thoại Xiaomi Redmi Note 10', 'Active'),
-('Samsung Galaxy A52', 1, 2, 10990000.00, 50, 'Điện thoại Samsung Galaxy A52', 'Active'),
-('OPPO A74', 1, 4, 6990000.00, 65, 'Điện thoại OPPO A74', 'Active'),
+('iPhone 15 Pro Max', 4, 1, 1, 29990000.00, 50, 'Điện thoại Apple iPhone 15 Pro Max 512G', 'Active'),
+('Samsung Galaxy S21', 2, 1, 2, 20990000.00, 40, 'Điện thoại Samsung Galaxy S21', 'Active'),
+('OPPO Reno6', 3, 1, 4, 12990000.00, 60, 'Điện thoại OPPO Reno6', 'Active'),
+('Xiaomi Mi 11', 2, 1, 3, 17990000.00, 30, 'Điện thoại Xiaomi Mi 11', 'Active'),
+('Vivo V21', 2, 1, 5, 10990000.00, 45, 'Điện thoại Vivo V21', 'Active'),
+('Xiaomi Redmi Note 13 Pro', 4, 1, 3, 8990000.00, 55, 'Điện thoại Xiaomi Redmi Note 13 Pro 8GB/128GB', 'Active'),
+('Nokia X10', 4, 1, 7, 7990000.00, 35, 'Điện thoại Nokia X10', 'Active'),
+('Samsung Galaxy Z Fold5', 4, 1, 2, 20990000.00, 25, 'Điện thoại Samsung Galaxy Z Fold5 5G 12GB/256GB', 'Active'),
+('iPhone 14 Pro Max', 3, 1, 1, 24990000.00, 20, 'Điện thoại iPhone 14 Pro Max 1T', 'Active'),
+('Xiaomi 14 Ultra', 2, 1, 3, 18990000.00, 40, 'Điện thoại Xiaomi 14 Ultra 16GB/512GB', 'Active'),
+('Huawei P40 Pro', 4, 1, 8, 21990000.00, 30, 'Điện thoại Huawei P40 Pro', 'Active'),
+('Asus ROG Phone 5', 4, 1, 12, 29990000.00, 15, 'Điện thoại Asus ROG Phone 5', 'Active'),
+('Xiaomi Redmi Note 10', 3, 1, 3, 5990000.00, 70, 'Điện thoại Xiaomi Redmi Note 10', 'Active'),
+('Samsung Galaxy A52', 4, 1, 2, 10990000.00, 50, 'Điện thoại Samsung Galaxy A52', 'Active'),
+('OPPO A74', 4, 1, 4, 6990000.00, 65, 'Điện thoại OPPO A74', 'Active'),
 
 -- Laptops (8)
-('MacBook Air M1', 2, 1, 29990000.00, 25, 'Laptop Apple MacBook Air M1', 'Active'),
-('MacBook Pro 16 inch M3', 2, 1, 25990000.00, 20, 'Laptop Apple MacBook Pro 16 inch M3 Pro', 'Active'),
-('Asus TUF Gaming A15', 2, 11, 19990000.00, 30, 'Laptop Asus TUF Gaming A15 FA506NF R5', 'Active'),
-('Asus ZenBook 14', 2, 11, 18990000.00, 35, 'Laptop Asus ZenBook 14', 'Active'),
-('Asus Vivobook 16', 2, 11, 29990000.00, 15, 'Laptop Asus Vivobook 16 X1605VA i5', 'Active'),
-('Acer Aspire 5', 2, 12, 15990000.00, 25, 'Laptop Acer Aspire 5', 'Active'),
-('Acer Gaming Nitro 5 Tiger', 2, 12, 26990000.00, 20, 'Laptop Acer Gaming Nitro 5 Tiger AN515 58 52SP i5', 'Active'),
-('Acer Gaming Nitro V', 2, 12, 23990000.00, 20, 'Laptop Acer Gaming Nitro V ANV15 51 57B2 i5', 'Active'),
+('MacBook Air M1', 4, 2, 1, 29990000.00, 25, 'Laptop Apple MacBook Air M1', 'Active'),
+('MacBook Pro 16 inch M3', 4, 2, 1, 25990000.00, 20, 'Laptop Apple MacBook Pro 16 inch M3 Pro', 'Active'),
+('Asus TUF Gaming A15', 2, 2, 11, 19990000.00, 30, 'Laptop Asus TUF Gaming A15 FA506NF R5', 'Active'),
+('Asus ZenBook 14', 3, 2, 11, 18990000.00, 35, 'Laptop Asus ZenBook 14', 'Active'),
+('Asus Vivobook 16', 3, 2, 11, 29990000.00, 15, 'Laptop Asus Vivobook 16 X1605VA i5', 'Active'),
+('Acer Aspire 5', 2, 2, 12, 15990000.00, 25, 'Laptop Acer Aspire 5', 'Active'),
+('Acer Gaming Nitro 5 Tiger', 4, 2, 12, 26990000.00, 20, 'Laptop Acer Gaming Nitro 5 Tiger AN515 58 52SP i5', 'Active'),
+('Acer Gaming Nitro V', 2, 2, 12, 23990000.00, 20, 'Laptop Acer Gaming Nitro V ANV15 51 57B2 i5', 'Active'),
 
 -- Tablets (5)
-('Samsung Galaxy Tab S7', 3, 2, 16990000.00, 40, 'Máy tính bảng Samsung Galaxy Tab S7', 'Active'),
-('Samsung Galaxy Tab S6 Lite', 3, 1, 16990000.00, 50, 'Máy tính bảng Samsung Galaxy Tab S6 Lite (2024)', 'Active'),
-('iPad Pro M4', 3, 1, 14990000.00, 30, 'Máy tính bảng iPad Pro M4 11 inch WiFi 256GB', 'Active'),
-('iPad Air 6 M2', 3, 1, 24990000.00, 20, 'Máy tính bảng iPad Air 6 M2 11 inch WiFi 128GB', 'Active'),
-('Xiaomi Redmi Pad SE', 3, 3, 11990000.00, 35, 'Máy tính bảng Xiaomi Redmi Pad SE (4GB/128GB)', 'Active'),
+('Samsung Galaxy Tab S7', 4, 3, 2, 16990000.00, 40, 'Máy tính bảng Samsung Galaxy Tab S7', 'Active'),
+('Samsung Galaxy Tab S6 Lite', 4, 3, 1, 16990000.00, 50, 'Máy tính bảng Samsung Galaxy Tab S6 Lite (2024)', 'Active'),
+('iPad Pro M4', 2, 3, 1, 14990000.00, 30, 'Máy tính bảng iPad Pro M4 11 inch WiFi 256GB', 'Active'),
+('iPad Air 6 M2', 2, 3, 1, 24990000.00, 20, 'Máy tính bảng iPad Air 6 M2 11 inch WiFi 128GB', 'Active'),
+('Xiaomi Redmi Pad SE', 3, 3, 3, 11990000.00, 35, 'Máy tính bảng Xiaomi Redmi Pad SE (4GB/128GB)', 'Active'),
 
 -- Mobile Accessories (5)
-('AirPods Pro 2 Nhựa', 4, 1, 5490000.00, 120, 'Túi đựng AirPods Pro 2 Nhựa cứng viền dẻo Laut HUEX PASTEL', 'Active'),
-(' Tab A9 Samsung', 4, 2, 4990000.00, 110, 'Bao da Galaxy Tab A9 Samsung Chính hãng', 'Active'),
-('Type C PD 45W Samsung', 4, 2, 799000.00, 200, 'Pin sạc dự phòng 20000mAh Type C PD 45W Samsung EB-P4520', 'Active'),
-('Magsafe iPhone 15 Pro Max', 4, 1, 6990000.00, 80, 'Ốp lưng Magsafe iPhone 15 Pro Max Vải tinh dệt Apple', 'Active'),
-('Samsung S Pen Pro', 4, 2, 990000.00, 150, 'Bút cảm ứng Samsung S Pen Pro EJ-P5450 Đen', 'Active'),
+('AirPods Pro 2 Nhựa', 4, 4, 1, 5490000.00, 120, 'Túi đựng AirPods Pro 2 Nhựa cứng viền dẻo Laut HUEX PASTEL', 'Active'),
+(' Tab A9 Samsung', 2, 4, 2, 4990000.00, 110, 'Bao da Galaxy Tab A9 Samsung Chính hãng', 'Active'),
+('Type C PD 45W Samsung', 2, 4, 2, 799000.00, 200, 'Pin sạc dự phòng 20000mAh Type C PD 45W Samsung EB-P4520', 'Active'),
+('Magsafe iPhone 15 Pro Max', 3, 4, 1, 6990000.00, 80, 'Ốp lưng Magsafe iPhone 15 Pro Max Vải tinh dệt Apple', 'Active'),
+('Samsung S Pen Pro', 3, 4, 2, 990000.00, 150, 'Bút cảm ứng Samsung S Pen Pro EJ-P5450 Đen', 'Active'),
 
 -- Laptop Accessories (5)
-('Apple MK2E3', 5, 1, 2299000.00, 100, 'Chuột Bluetooth Apple MK2E3', 'Active'),
-('ASUS ROG Gladius III', 5, 11, 1699000.00, 80, 'Chuột Gaming ASUS ROG Gladius III', 'Active'),
-('Asus ROG Strix Scope', 5, 11, 2990000.00, 60, 'Bàn phím Có Dây Gaming Asus ROG Strix Scope NX TKL DELUXE RD SW', 'Active'),
-('Asus AX1800HP', 5, 11, 3999000.00, 40, 'Router Wifi Chuẩn Wifi 6 Asus AX1800HP', 'Active'),
-('Xiaomi HLK404', 5, 3, 1299000.00, 90, 'Chuột Bluetooth Silent Xiaomi HLK404', 'Active'),
+('Apple MK2E3', 4, 5, 1, 2299000.00, 100, 'Chuột Bluetooth Apple MK2E3', 'Active'),
+('ASUS ROG Gladius III', 3, 5, 11, 1699000.00, 80, 'Chuột Gaming ASUS ROG Gladius III', 'Active'),
+('Asus ROG Strix Scope', 3, 5, 11, 2990000.00, 60, 'Bàn phím Có Dây Gaming Asus ROG Strix Scope NX TKL DELUXE RD SW', 'Active'),
+('Asus AX1800HP', 3, 5, 11, 3999000.00, 40, 'Router Wifi Chuẩn Wifi 6 Asus AX1800HP', 'Active'),
+('Xiaomi HLK404', 2, 5, 3, 1299000.00, 90, 'Chuột Bluetooth Silent Xiaomi HLK404', 'Active'),
 
 -- Audio Devices (5)
-('AirPods Pro Gen 2', 6, 1, 2990000.00, 80, 'Tai nghe Bluetooth AirPods Pro Gen 2 MagSafe Charge', 'Active'),
-('Samsung HW-B650D/XV', 6, 2, 2490000.00, 90, 'Loa Thanh Samsung HW-B650D/XV 370W', 'Active'),
-('Xiaomi Redmi Buds 5 Pro', 6, 3, 5990000.00, 50, 'Tai nghe Bluetooth True Wireless Xiaomi Redmi Buds 5 Pro', 'Active'),
-('Asus Rog Cetra', 6, 11, 8490000.00, 30, 'Tai nghe Bluetooth True Wireless Gaming Asus Rog Cetra', 'Active'),
-('OPPO ENCO Buds 2', 6, 4, 3990000.00, 70, 'Tai nghe Bluetooth True Wireless OPPO ENCO Buds 2 ETE41', 'Active'),
+('AirPods Pro Gen 2', 4, 6, 1, 2990000.00, 80, 'Tai nghe Bluetooth AirPods Pro Gen 2 MagSafe Charge', 'Active'),
+('Samsung HW-B650D/XV', 2, 6, 2, 2490000.00, 90, 'Loa Thanh Samsung HW-B650D/XV 370W', 'Active'),
+('Xiaomi Redmi Buds 5 Pro', 2, 6, 3, 5990000.00, 50, 'Tai nghe Bluetooth True Wireless Xiaomi Redmi Buds 5 Pro', 'Active'),
+('Asus Rog Cetra', 3, 6, 11, 8490000.00, 30, 'Tai nghe Bluetooth True Wireless Gaming Asus Rog Cetra', 'Active'),
+('OPPO ENCO Buds 2', 3, 6, 4, 3990000.00, 70, 'Tai nghe Bluetooth True Wireless OPPO ENCO Buds 2 ETE41', 'Active'),
 
 -- Storage Devices (5)
-('SanDisk Ultra 128GB', 7, 5, 299000.00, 300, 'Thẻ nhớ SanDisk Ultra 128GB', 'Active'),
-('Samsung T5 Portable SSD 1TB', 7, 2, 3499000.00, 60, 'Ổ cứng di động SSD Samsung T5 1TB', 'Active'),
-('Kingston DataTraveler 64GB', 7, 6, 499000.00, 150, 'USB Kingston DataTraveler 64GB', 'Active'),
-('Seagate Backup Plus 2TB', 7, 7, 2499000.00, 80, 'Ổ cứng di động Seagate Backup Plus 2TB', 'Active'),
-('Transcend StoreJet 1TB', 7, 8, 1999000.00, 70, 'Ổ cứng di động Transcend StoreJet 1TB', 'Active');
+('SanDisk Ultra 128GB', 3, 7, 5, 299000.00, 300, 'Thẻ nhớ SanDisk Ultra 128GB', 'Active'),
+('Samsung T5 Portable SSD 1TB', 3, 7, 2, 3499000.00, 60, 'Ổ cứng di động SSD Samsung T5 1TB', 'Active'),
+('Kingston DataTraveler 64GB', 3, 7, 6, 499000.00, 150, 'USB Kingston DataTraveler 64GB', 'Active'),
+('Seagate Backup Plus 2TB', 2, 7, 7, 2499000.00, 80, 'Ổ cứng di động Seagate Backup Plus 2TB', 'Active'),
+('Transcend StoreJet 1TB', 2, 7, 8, 1999000.00, 70, 'Ổ cứng di động Transcend StoreJet 1TB', 'Active');
 
 select * from Products;
 
@@ -265,3 +266,73 @@ insert into veritymoney (UserID, Money) values
 (4, 200000.00),
 (6, 300000.00),
 (9, 500000.00);
+
+
+delimiter //
+create procedure select_all_product()
+begin
+	select productName, us.fullName, ctpd.categoryName, spl.supplierName, price, quantity, pd.description, pd.status 
+	from products pd
+	inner join user us on us.userID = pd.userID
+	inner join categoryProduct ctpd on ctpd.categoryID = pd.categoryID
+	inner join supplier spl on spl.supplierID = pd.supplierID;
+end //
+delimiter ;
+
+call select_all_product();
+
+
+delimiter //
+create procedure select_all_cart()
+begin
+	select us.fullName, quantityProduct, totalPrice 
+	from cart ct
+	inner join user us on us.userId = ct.userId;
+end //
+delimiter ;
+
+call select_all_cart();
+
+
+delimiter //
+create procedure select_all_cart_detail()
+begin
+	select ctdt.cartId, pd.productName, ctdt.quantity, ctdt.price
+    from cartDetails ctdt
+    inner join cart ct on ct.cartId = ctdt.cartId
+    inner join products pd on pd.productId = ctdt.productId;
+end //
+delimiter ;
+
+call select_all_cart_detail();
+
+
+delimiter //
+create procedure select_all_bill()
+begin
+	select us.fullName, totalAmount, billDate 
+	from bill bl
+	inner join user us on us.userId = bl.userId;
+end //
+delimiter ;
+
+call select_all_bill();
+
+
+delimiter //
+create procedure select_all_bill_detail()
+begin
+	select bldt.billId, pd.productName, bldt.quantity, bldt.price, totalprice
+	from billDetail bldt
+	inner join bill bl on bl.billId= bldt.billId
+    inner join products pd on pd.productId = bldt.productId;
+end //
+delimiter ;
+
+call select_all_bill();
+
+
+
+
+
+
