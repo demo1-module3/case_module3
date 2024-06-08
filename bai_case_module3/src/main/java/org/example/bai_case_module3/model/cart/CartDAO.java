@@ -21,7 +21,6 @@ public class CartDAO implements ICartDAO {
 
     private static final String SELECT_ALL_CART = "call select_all_cart();";
 
-
     @Override
     public void insertInto(Cart cart) throws SQLException {
 
@@ -34,20 +33,20 @@ public class CartDAO implements ICartDAO {
 
     @Override
     public List<Cart> selectAll() {
-        List<Cart> cartList= new ArrayList<>();
-        CallableStatement callableStatement=null;
+        List<Cart> cartList = new ArrayList<>();
+        CallableStatement callableStatement = null;
         try {
             callableStatement = connection.prepareCall(SELECT_ALL_CART);
-            ResultSet resultSet= callableStatement.executeQuery();
+            ResultSet resultSet = callableStatement.executeQuery();
 
             while (resultSet.next()) {
-                String fullName= resultSet.getString("fullName");
+                String fullName = resultSet.getString("fullName");
                 int quantityProduct = Integer.parseInt(resultSet.getString("quantityProduct"));
                 Double totalPrice = Double.parseDouble(resultSet.getString("totalPrice"));
 
-                User user=new User(fullName);
+                User user = new User(fullName);
 
-                cartList.add(new Cart(user,quantityProduct,totalPrice));
+                cartList.add(new Cart(user, quantityProduct, totalPrice));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -56,8 +55,8 @@ public class CartDAO implements ICartDAO {
     }
 
     public static void main(String[] args) {
-        CartDAO cartDAO =new CartDAO();
-        List<Cart> cartList=cartDAO.selectAll();
+        CartDAO cartDAO = new CartDAO();
+        List<Cart> cartList = cartDAO.selectAll();
         for (Cart cart : cartList) {
             System.out.println(cart.getUserId().getFullName());
             System.out.println(cart.getQuantityProduct());

@@ -5,6 +5,7 @@ import org.example.bai_case_module3.entity.BillDetails;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 public class BillDetailDAO implements IBillDetailDAO{
@@ -14,6 +15,8 @@ public class BillDetailDAO implements IBillDetailDAO{
         DBConnect dbConnection =new DBConnect();
         connection = dbConnection.getConnection();
     }
+
+    private static final String SELECT_ALL_BILL_DETAIL= "call select_all_bill_detail();";
 
     @Override
     public void insertInto(BillDetails billDetails) throws SQLException {
@@ -27,6 +30,8 @@ public class BillDetailDAO implements IBillDetailDAO{
 
     @Override
     public List<BillDetails> selectAll() {
+        List<BillDetails> billDetailsList =new ArrayList<>();
+
         return null;
     }
 

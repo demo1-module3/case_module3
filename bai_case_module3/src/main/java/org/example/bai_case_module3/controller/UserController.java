@@ -1,10 +1,5 @@
 package org.example.bai_case_module3.controller;
 
-import org.example.bai_case_module3.entity.Gender;
-import org.example.bai_case_module3.entity.Role;
-import org.example.bai_case_module3.entity.Status;
-import org.example.bai_case_module3.entity.User;
-import org.example.bai_case_module3.model.user.UserDAO;
 import org.example.bai_case_module3.service.UserService;
 
 import javax.servlet.ServletConfig;
@@ -15,8 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-
-import static org.example.bai_case_module3.Util.DateConversion.convertStringToDate;
 
 @WebServlet(name = "UserServlet", urlPatterns = "/user/*")
 public class UserController  extends HttpServlet {
