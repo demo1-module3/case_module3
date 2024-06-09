@@ -63,9 +63,9 @@ public class SupplierService {
     }
 
     public void updateSupplier(HttpServletRequest req) throws ServletException, IOException, SQLException {
-        Supplier updatedSupplier = mapReqToSupplier(req);
-        updatedSupplier.setSupplierId(Integer.parseInt(req.getParameter("SupplierId")));
-        this.supplierDAO.update(updatedSupplier);
+        Supplier newSupplier = mapReqToSupplier(req);
+        newSupplier.setSupplierId(Integer.parseInt(req.getParameter("SupplierId")));
+        this.supplierDAO.update(newSupplier);
     }
 
     public void deleteSupplierById(int id) throws ServletException, IOException, SQLException {

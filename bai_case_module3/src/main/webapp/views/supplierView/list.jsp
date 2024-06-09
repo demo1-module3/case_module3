@@ -17,24 +17,6 @@
 </head>
 <body>
 <h1>Supplier List</h1>
-<%--<table>--%>
-<%--    <tr>--%>
-<%--        <th>#</th>--%>
-<%--        <th>SupplierName</th>--%>
-<%--        <th>Address</th>--%>
-<%--        <th>status</th>--%>
-<%--    </tr>--%>
-<%--    <c:set var="i" value="1"/>--%>
-<%--    <c:forEach items="${suppliers}" var="suppliers">--%>
-<%--        <tr>--%>
-<%--            <td><c:out value="${i}"/></td>--%>
-<%--            <td><c:out value="${suppliers.supplierName}"/></td>--%>
-<%--            <td><c:out value="${suppliers.address}"/></td>--%>
-<%--            <td><c:out value="${suppliers.status}"/></td>--%>
-<%--        </tr>--%>
-<%--        <c:set var="i" value="${i + 1}"/>--%>
-<%--    </c:forEach>--%>
-<%--</table>--%>
 <div class="container">
     <div class="card">
         <h1>Supplier List</h1>
@@ -57,7 +39,7 @@
                         <td>
                             <div style="display: flex;">
                                 <form action="/supplier/edit" method="get" class="mt-3" style="margin-right: 10px">
-                                    <input type="hidden" name="SupplierID" value="${supplier.supplierId}">
+                                    <input type="hidden" name="SupplierId" value="${supplier.supplierId}">
                                     <button type="submit" class="btn btn-info" style="width: 80px;">Edit</button>
                                 </form>
 

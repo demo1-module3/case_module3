@@ -28,6 +28,7 @@
                         <th>UserID</th>
                         <th>Money</th>
                         <th>status</th>
+                        <th>Actions</th>
                     </tr>
                     <c:set var="i" value="1"/>
                     <c:forEach items="${verityMoneys}" var="verityMoneys">
@@ -38,6 +39,19 @@
                             </td>
                             <td><c:out value="${verityMoneys.money}"/> </td>
                             <td><c:out value="${verityMoneys.status}"/> </td>
+                            <td>
+                                <div style="display: flex;">
+                                    <form action="/verityMoney/edit" method="get" class="mt-3" style="margin-right: 10px">
+                                        <input type="hidden" name="VerityMoneyId" value="${verityMoneys.verityMoneyId}">
+                                        <button type="submit" class="btn btn-Info" style="width: 80px;">Edit</button>
+                                    </form>
+
+                                    <form action="/verityMoney/delete" method="post" class="mt-3" onsubmit="return confirm('Bạn có chắc chắn muốn xóa danh mục này?');">
+                                        <input type="hidden" name="VerityMoneyId" value="${verityMoneys.verityMoneyId}">
+                                        <button type="submit" class="btn btn-danger" style="width: 80px;">Delete</button>
+                                    </form>
+                                </div>
+                            </td>
                         </tr>
                         <c:set var="i" value="${i + 1}"/>
                     </c:forEach>

@@ -17,38 +17,12 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     </head>
     <body>
-<%--    <div class="container">--%>
-<%--        <div class="card">--%>
-<%--            <h1>Category List</h1>--%>
-<%--            <div class="card-header">--%>
-<%--                <a href="/verityMoney/create" class="btn btn-success">Create</a>--%>
-<%--                <table class="table table-hover">--%>
-<%--                    <h1>Category List</h1>--%>
-<%--                        <tr>--%>
-<%--                            <th>#</th>--%>
-<%--                            <th>categoryName</th>--%>
-<%--                            <th>description</th>--%>
-<%--                            <th>status</th>--%>
-<%--                        </tr>--%>
-<%--                        <c:set var="i" value="1"/>--%>
-<%--                        <c:forEach items="${categoryProducts}" var="categoryProducts">--%>
-<%--                            <tr>--%>
-<%--                                <td><c:out value="${i}"/></td>--%>
-<%--                                <td><c:out value="${categoryProducts.categoryName}"/> </td>--%>
-<%--                                <td><c:out value="${categoryProducts.description}"/> </td>--%>
-<%--                                <td><c:out value="${categoryProducts.status}"/> </td>--%>
-<%--                            </tr>--%>
-<%--                            <c:set var="i" value="${i + 1}"/>--%>
-<%--                        </c:forEach>--%>
-<%--                    </table>--%>
-<%--            </div>--%>
-<%--        </div>--%>
-<%--    </div>--%>
 <div class="container">
     <div class="card">
         <h1>Category List</h1>
         <div class="card-header">
         <table class="table table-hover">
+            <a href="/category/create" class="btn btn-success">Create</a>
             <thead>
             <tr>
                 <th>Category Name</th>
@@ -65,12 +39,12 @@
                     <td>${categoryProduct.status}</td>
                     <td>
                         <div style="display: flex;">
-                            <form action="/categoryProduct/edit" method="get" class="mt-3" style="margin-right: 10px">
+                            <form action="/category/edit" method="get" class="mt-3" style="margin-right: 10px">
                                 <input type="hidden" name="CategoryId" value="${categoryProduct.categoryId}">
                                 <button type="submit" class="btn btn-Info" style="width: 80px;">Edit</button>
                             </form>
 
-                            <form action="/categoryProduct/delete" method="post" class="mt-3" onsubmit="return confirm('Bạn có chắc chắn muốn xóa danh mục này?');">
+                            <form action="/category/delete" method="post" class="mt-3" onsubmit="return confirm('Bạn có chắc chắn muốn xóa danh mục này?');">
                                 <input type="hidden" name="CategoryId" value="${categoryProduct.categoryId}">
                                 <button type="submit" class="btn btn-danger" style="width: 80px;">Delete</button>
                             </form>

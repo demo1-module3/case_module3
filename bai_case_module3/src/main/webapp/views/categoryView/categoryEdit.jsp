@@ -18,7 +18,7 @@
     <body>
         <div class="container">
             <h1>Edit Category Product</h1>
-            <form class="form-group" action="/categoryProduct/edit" method="post">
+            <form class="form-group" action="/category/edit" method="post">
                 <input type="hidden" name="CategoryId" value="${categoryProduct.categoryId}">
 
                 <div class="form-group">
@@ -34,8 +34,8 @@
                 <div class="form-group">
                     <label for="Status">Status:</label>
                     <select class="form-control" id="Status" name="Status">
-                        <option value="Active" ${categoryProduct.status == "Active" ? 'selected' : ''}>Active</option>
-                        <option value="Inactive" ${categoryProduct.status == "Inactive" ? 'selected' : ''}>Inactive</option>
+                        <option value="Active" ${categoryProduct.status == "ACTIVE" ? 'selected' : ''}>Active</option>
+                        <option value="Inactive" ${categoryProduct.status == "INACTIVE" ? 'selected' : ''}>Inactive</option>
                     </select>
                 </div>
 
