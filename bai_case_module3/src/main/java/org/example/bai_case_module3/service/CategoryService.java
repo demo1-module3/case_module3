@@ -43,8 +43,6 @@ public class CategoryService {
     public void renderPageEditCategory(HttpServletRequest request, HttpServletResponse response, int id) throws ServletException, IOException, SQLException {
         CategoryProduct categoryProduct = this.categoryDAO.selectById(id);
         request.setAttribute("categoryProduct", categoryProduct);
-        List<CategoryProduct> roles = this.categoryDAO.selectAll();
-        request.setAttribute("categoryProduct", categoryProduct);
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/categoryView/categoryEdit.jsp");
         requestDispatcher.forward(request,response);
     }

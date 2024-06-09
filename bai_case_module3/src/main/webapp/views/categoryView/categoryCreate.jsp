@@ -18,7 +18,7 @@
     <body>
     <div class="container">
         <h1>Add Category Product</h1>
-        <form class="form-group" action="/categoryProduct/create" method="post">
+        <form class="form-group" action="/category/create" method="post">
             <div class="form-group">
                 <label for="CategoryName">Category Name:</label>
                 <input type="text" class="form-control" id="CategoryName" name="CategoryName" required>

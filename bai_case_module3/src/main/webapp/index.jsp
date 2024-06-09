@@ -29,9 +29,5 @@
 <hr>
 <a href="auth/login">dang nhap</a>
 
-
-
-
-
 </body>
 </html>
