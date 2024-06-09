@@ -22,12 +22,37 @@ public class SupplierDAO implements ISupplierDAO{
 
     @Override
     public void insertInto(Supplier supplier) throws SQLException {
-
+        String query = "INSERT INTO Supplier (SupplierName, Address, Status) VALUES (?, ?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, supplier.getSupplierName());
+            statement.setString(2, supplier.getAddress());
+            statement.setString(3, supplier.getStatus().name());
+            statement.executeUpdate();
+        }
     }
 
     @Override
-    public Supplier selectById(int id) {
+    public Supplier selectById(int id) throws SQLException{
+        String sql = "SELECT * FROM Supplier WHERE SupplierID = ?";
+
+        try (PreparedStatement preparedStatement = this.connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return mapToSupplier(resultSet);
+            }
+        }
         return null;
+    }
+
+    public Supplier mapToSupplier(ResultSet resultSet) throws SQLException {
+        Supplier supplier = new Supplier();
+        supplier.setSupplierId(resultSet.getInt("SupplierID"));
+        supplier.setSupplierName(resultSet.getString("SupplierName"));
+        supplier.setAddress(resultSet.getString("Address"));
+        supplier.setStatus(Status.valueOf(resultSet.getString("Status").toUpperCase()));
+        return supplier;
     }
 
     @Override
@@ -69,11 +94,24 @@ public class SupplierDAO implements ISupplierDAO{
 
     @Override
     public boolean deleteById(int id) throws SQLException {
-        return false;
+        String sql = "DELETE FROM Supplier WHERE SupplierID = ?";
+        try (PreparedStatement preparedStatement = this.connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+            return preparedStatement.executeUpdate() > 0;
+        }
     }
 
     @Override
     public boolean update(Supplier supplier) throws SQLException {
-        return false;
+        String sql = "UPDATE Supplier SET SupplierName = ?, Address = ?, Status = ? WHERE SupplierID = ?";
+
+        try (PreparedStatement preparedStatement = this.connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, supplier.getSupplierName());
+            preparedStatement.setString(2, supplier.getAddress());
+            preparedStatement.setString(3, supplier.getStatus().name());
+            preparedStatement.setInt(4, supplier.getSupplierId());
+
+            return preparedStatement.executeUpdate() > 0;
+        }
     }
 }

@@ -60,6 +60,11 @@ public class UserDAO implements IUserDAO{
     }
 
     @Override
+<<<<<<< HEAD
+    public List<User> selectAll() {
+
+        return null;
+=======
     public List<User> selectAll() throws SQLException{
         String sql = "SELECT u.*, r.RoleName as RoleName FROM user u INNER JOIN role r ON u.RoleID = r.RoleID ORDER BY u.UserId";
         PreparedStatement preparedStatement = this.connection.prepareStatement(sql);
@@ -72,6 +77,7 @@ public class UserDAO implements IUserDAO{
         }
 
         return users;
+>>>>>>> ee746ad5178ea29c18fc4636985b499b7a6a6310
     }
 
     @Override
