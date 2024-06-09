@@ -65,7 +65,7 @@
 
             <td>
                 <div style="display: flex;">
-                    <form action="user/edit" method="get" class="mt-3" style="margin-right: 10px">
+                    <form action="cart/create" method="get" class="mt-3" style="margin-right: 10px">
                         <input type="hidden" name="UserID" value="${user.userId}">
                         <button type="submit" class="btn btn-Info" style="width: 80px;">Edit</button>
                     </form>
