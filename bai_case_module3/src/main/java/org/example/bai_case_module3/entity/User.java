@@ -14,9 +14,9 @@ public class User {
     private String phoneNumber;
     private String address;
     private Double wallet;
-    private Status status= Status.Active;
+    private Status status;
 
-    public User() {
+    public User(int idUser, String nameUser) {
     }
 
     public User(int userId) {
@@ -158,6 +158,24 @@ public class User {
 
     public Status getStatus() {
         return status;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", fullName='" + fullName + '\'' +
+                ", roleId=" + roleId +
+                ", dateOfBirth=" + dateOfBirth +
+                ", gender=" + gender +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", address='" + address + '\'' +
+                ", wallet=" + wallet +
+                ", status=" + status +
+                '}';
     }
 
     public void setStatus(Status status) {
