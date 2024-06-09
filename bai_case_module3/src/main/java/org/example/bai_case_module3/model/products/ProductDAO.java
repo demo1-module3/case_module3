@@ -39,6 +39,7 @@ public class ProductDAO implements IProductDAO {
             ResultSet resultSet = callableStatement.executeQuery();
 
             while (resultSet.next()) {
+                int productId = Integer.parseInt(resultSet.getString("productId"));
                 String productName = resultSet.getString("productName");
                 String fullName = resultSet.getString("fullName");
                 String categoryName = resultSet.getString("categoryName");
@@ -46,14 +47,14 @@ public class ProductDAO implements IProductDAO {
                 Double price = resultSet.getDouble("price");
                 int quantity = resultSet.getInt("quantity");
                 String description = resultSet.getString("description");
-                String status = resultSet.getString("status");
+                String status = resultSet.getString("status").toUpperCase();
 
                 User user = new User(fullName);
                 CategoryProduct categoryProduct = new CategoryProduct(categoryName);
                 Supplier supplier = new Supplier(supplierName);
                 Status status1 = Status.valueOf(status);
 
-                productsList.add(new Products(productName, user, categoryProduct, supplier, price, quantity, description, status1));
+                productsList.add(new Products(productId, productName, user, categoryProduct, supplier, price, quantity, description, status1));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

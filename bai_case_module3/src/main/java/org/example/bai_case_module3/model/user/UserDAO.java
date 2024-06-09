@@ -117,4 +117,23 @@ public class UserDAO implements IUserDAO{
         user.setStatus(Status.valueOf(resultSet.getString("Status").toUpperCase()));
         return user;
     }
+
+    public User findUserByAccount(String username, String password){
+        String query = "select * from user where Username = ? and Password = ?;";
+
+        try {
+            PreparedStatement preparedStatement = this.connection.prepareStatement(query);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            if (resultSet.next()) {
+                User user = mapToUser(resultSet);
+                user.setRoleId(new Role(resultSet.getString("roleId")));
+                return user;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
+    }
 }

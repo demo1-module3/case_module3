@@ -30,19 +30,21 @@ public class BillDAO implements IBillDAO {
 
     @Override
     public List<Bill> selectAll() {
-        List<Bill> billList=new ArrayList<>();
-        CallableStatement callableStatement=null;
+        List<Bill> billList = new ArrayList<>();
+        CallableStatement callableStatement = null;
         try {
-            callableStatement= connection.prepareCall(SELECT_ALL_BILL);
+            callableStatement = connection.prepareCall(SELECT_ALL_BILL);
             ResultSet resultSet = callableStatement.executeQuery();
 
-            while (resultSet.next()){
+            while (resultSet.next()) {
+                int billId = resultSet.getInt("billId");
                 String fullName = resultSet.getString("fullName");
-                Double totalAmount= Double.parseDouble(resultSet.getString("totalAmount"));
-                Date billDate= Date.valueOf(resultSet.getString("billDate"));
+                double totalAmount = resultSet.getDouble("totalAmount");
+                Date billDate = Date.valueOf(resultSet.getString("billDate"));
 
-                User user=new User(fullName);
-                billList.add(new Bill(user,totalAmount,billDate));
+                User user = new User(fullName);
+
+                billList.add(new Bill(billId, user, totalAmount, billDate));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

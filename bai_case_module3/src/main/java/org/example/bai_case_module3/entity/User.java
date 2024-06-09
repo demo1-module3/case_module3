@@ -14,7 +14,7 @@ public class User {
     private String phoneNumber;
     private String address;
     private Double wallet;
-    private Status status= Status.Active;
+    private Status status= Status.ACTIVE;
 
     public User() {
     }

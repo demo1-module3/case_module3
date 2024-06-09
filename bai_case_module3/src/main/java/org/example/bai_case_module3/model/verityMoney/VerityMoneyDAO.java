@@ -29,7 +29,7 @@ public class VerityMoneyDAO implements IVerityMoneyDAO {
                 int id = rs.getInt("verityMoneyId");
                 String fullName = rs.getString("fullName");
                 double money = rs.getDouble("money");
-                String status = rs.getString("status");
+                String status = rs.getString("status").toUpperCase();
 
                 User user = new User(fullName);
                 Status status1 = Status.valueOf(status);
