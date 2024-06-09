@@ -41,6 +41,7 @@ public class CartDetailDAO implements ICartDetailDAO{
             ResultSet resultSet=callableStatement.executeQuery();
 
             while (resultSet.next()){
+                int cartDetailId=resultSet.getInt("cartDetailId");
                 int cartId=resultSet.getInt("cartId");
                 String productName=resultSet.getString("productName");
                 int quantity=resultSet.getInt("quantity");
@@ -49,7 +50,7 @@ public class CartDetailDAO implements ICartDetailDAO{
                 Cart cart=new Cart(cartId);
                 Products products=new Products(productName);
 
-                cartDetailsList.add(new CartDetails(cart,products,quantity,price));
+                cartDetailsList.add(new CartDetails(cartDetailId, cart,products,quantity,price));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

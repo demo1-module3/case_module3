@@ -67,7 +67,7 @@ public class SupplierDAO implements ISupplierDAO{
                 int id = rs.getInt("SupplierId");
                 String name = rs.getString("SupplierName");
                 String Address = rs.getString("Address");
-                String status = rs.getString("status");
+                String status = rs.getString("status").toUpperCase();
 
                 Status status1 = Status.valueOf(status);
                 Supplier supplier = new Supplier(id, name, Address, status1);
