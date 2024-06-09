@@ -20,7 +20,43 @@ public class SupplierDAO implements ISupplierDAO{
         this.connection = dbConnection.getConnection();
     }
 
-    public List<Supplier> getAllSupplier() throws SQLException{
+    @Override
+    public void insertInto(Supplier supplier) throws SQLException {
+        String query = "INSERT INTO Supplier (SupplierName, Address, Status) VALUES (?, ?, ?)";
+        try (PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, supplier.getSupplierName());
+            statement.setString(2, supplier.getAddress());
+            statement.setString(3, supplier.getStatus().name());
+            statement.executeUpdate();
+        }
+    }
+
+    @Override
+    public Supplier selectById(int id) throws SQLException{
+        String sql = "SELECT * FROM Supplier WHERE SupplierID = ?";
+
+        try (PreparedStatement preparedStatement = this.connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            if (resultSet.next()) {
+                return mapToSupplier(resultSet);
+            }
+        }
+        return null;
+    }
+
+    public Supplier mapToSupplier(ResultSet resultSet) throws SQLException {
+        Supplier supplier = new Supplier();
+        supplier.setSupplierId(resultSet.getInt("SupplierID"));
+        supplier.setSupplierName(resultSet.getString("SupplierName"));
+        supplier.setAddress(resultSet.getString("Address"));
+        supplier.setStatus(Status.valueOf(resultSet.getString("Status").toUpperCase()));
+        return supplier;
+    }
+
+    @Override
+    public List<Supplier> selectAll() throws SQLException {
         List<Supplier> suppliers = new ArrayList<>();
         String sql = "SELECT * FROM Supplier";
 
@@ -47,7 +83,7 @@ public class SupplierDAO implements ISupplierDAO{
     public static void main(String[] args) {
         SupplierDAO supplierDAO = new SupplierDAO();
         try {
-            List<Supplier> suppliers = supplierDAO.getAllSupplier();
+            List<Supplier> suppliers = supplierDAO.selectAll();
             for (Supplier supplier : suppliers) {
                 System.out.println(supplier);
             }
@@ -57,27 +93,25 @@ public class SupplierDAO implements ISupplierDAO{
     }
 
     @Override
-    public void insertInto(Supplier supplier) throws SQLException {
-
-    }
-
-    @Override
-    public Supplier selectById(int id) {
-        return null;
-    }
-
-    @Override
-    public List<Supplier> selectAll() {
-        return null;
-    }
-
-    @Override
     public boolean deleteById(int id) throws SQLException {
-        return false;
+        String sql = "DELETE FROM Supplier WHERE SupplierID = ?";
+        try (PreparedStatement preparedStatement = this.connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, id);
+            return preparedStatement.executeUpdate() > 0;
+        }
     }
 
     @Override
     public boolean update(Supplier supplier) throws SQLException {
-        return false;
+        String sql = "UPDATE Supplier SET SupplierName = ?, Address = ?, Status = ? WHERE SupplierID = ?";
+
+        try (PreparedStatement preparedStatement = this.connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, supplier.getSupplierName());
+            preparedStatement.setString(2, supplier.getAddress());
+            preparedStatement.setString(3, supplier.getStatus().name());
+            preparedStatement.setInt(4, supplier.getSupplierId());
+
+            return preparedStatement.executeUpdate() > 0;
+        }
     }
 }

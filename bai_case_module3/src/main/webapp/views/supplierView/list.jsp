@@ -12,26 +12,70 @@
 <html>
 <head>
     <title>Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
 </head>
 <body>
 <h1>Supplier List</h1>
-<table>
-    <tr>
-        <th>#</th>
-        <th>SupplierName</th>
-        <th>Address</th>
-        <th>status</th>
-    </tr>
-    <c:set var="i" value="1"/>
-    <c:forEach items="${suppliers}" var="suppliers">
-        <tr>
-            <td><c:out value="${i}"/></td>
-            <td><c:out value="${suppliers.supplierName}"/></td>
-            <td><c:out value="${suppliers.address}"/></td>
-            <td><c:out value="${suppliers.status}"/></td>
-        </tr>
-        <c:set var="i" value="${i + 1}"/>
-    </c:forEach>
-</table>
+<%--<table>--%>
+<%--    <tr>--%>
+<%--        <th>#</th>--%>
+<%--        <th>SupplierName</th>--%>
+<%--        <th>Address</th>--%>
+<%--        <th>status</th>--%>
+<%--    </tr>--%>
+<%--    <c:set var="i" value="1"/>--%>
+<%--    <c:forEach items="${suppliers}" var="suppliers">--%>
+<%--        <tr>--%>
+<%--            <td><c:out value="${i}"/></td>--%>
+<%--            <td><c:out value="${suppliers.supplierName}"/></td>--%>
+<%--            <td><c:out value="${suppliers.address}"/></td>--%>
+<%--            <td><c:out value="${suppliers.status}"/></td>--%>
+<%--        </tr>--%>
+<%--        <c:set var="i" value="${i + 1}"/>--%>
+<%--    </c:forEach>--%>
+<%--</table>--%>
+<div class="container">
+    <div class="card">
+        <h1>Supplier List</h1>
+        <div class="card-header">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Supplier Name</th>
+                    <th>Address</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <c:forEach items="${suppliers}" var="supplier">
+                    <tr>
+                        <td>${supplier.supplierName}</td>
+                        <td>${supplier.address}</td>
+                        <td>${supplier.status}</td>
+                        <td>
+                            <div style="display: flex;">
+                                <form action="/supplier/edit" method="get" class="mt-3" style="margin-right: 10px">
+                                    <input type="hidden" name="SupplierID" value="${supplier.supplierId}">
+                                    <button type="submit" class="btn btn-info" style="width: 80px;">Edit</button>
+                                </form>
+
+                                <form action="/supplier/delete" method="post" class="mt-3" onsubmit="return confirm('Are you sure you want to delete this supplier?');">
+                                    <input type="hidden" name="SupplierID" value="${supplier.supplierId}">
+                                    <button type="submit" class="btn btn-danger" style="width: 80px;">Delete</button>
+                                </form>
+                            </div>
+                        </td>
+                    </tr>
+                </c:forEach>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
 </body>
 </html>
