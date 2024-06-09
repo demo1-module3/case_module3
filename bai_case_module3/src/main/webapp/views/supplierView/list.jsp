@@ -21,6 +21,7 @@
     <div class="card">
         <h1>Supplier List</h1>
         <div class="card-header">
+            <a href="/supplier/create" class="btn btn-success">Create</a>
             <table class="table table-hover">
                 <thead>
                 <tr>
