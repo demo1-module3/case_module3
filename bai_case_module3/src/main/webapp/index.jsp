@@ -5,7 +5,7 @@
   <title>JSP - Hello World</title>
 </head>
 <body>
-<h1><%= "Hello World!" %></h1>
+<%--<h1><%= "Hello World!" %></h1>--%>
 <br/>
 <a href="hello-servlet">Hello Servlet</a>
 <hr>
@@ -13,7 +13,10 @@
 <hr>
 <a href="supplier/list">danh sách Nha san xuat</a>
 <hr>
+
 <a href="verityMoney/list">danh sách verityMoney</a>
+
+<a href="user/list">danh sách Nguoi dung</a>
 
 </body>
 </html>
