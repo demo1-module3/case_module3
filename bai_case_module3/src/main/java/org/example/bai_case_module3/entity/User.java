@@ -16,7 +16,7 @@ public class User {
     private Double wallet;
     private Status status;
 
-    public User(int idUser, String nameUser) {
+    public User() {
     }
 
     public User(int userId) {
