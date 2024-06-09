@@ -5,14 +5,14 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnect {
-    private static final String URL = "jdbc:mysql://localhost:3306/shopi?useUnicode=yes&characterEncoding=UTF-8";
+    private static final String URL = "jdbc:mysql://localhost:3306/shopi";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "HUUtri126@";
+    private static final String PASSWORD = "hoangan1109";
 
     public Connection getConnection() {
         Connection connection = null;
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             connection = DriverManager.getConnection(URL,USERNAME,PASSWORD);
             System.out.println("Connection: " + connection);
         } catch (ClassNotFoundException e) {
