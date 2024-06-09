@@ -271,7 +271,7 @@ insert into veritymoney (UserID, Money) values
 delimiter //
 create procedure select_all_product()
 begin
-	select productName, us.fullName, ctpd.categoryName, spl.supplierName, price, quantity, pd.description, pd.status 
+	select ProductID, productName, us.fullName, ctpd.categoryName, spl.supplierName, price, quantity, pd.description, pd.status 
 	from products pd
 	inner join user us on us.userID = pd.userID
 	inner join categoryProduct ctpd on ctpd.categoryID = pd.categoryID
@@ -285,7 +285,7 @@ call select_all_product();
 delimiter //
 create procedure select_all_cart()
 begin
-	select us.fullName, quantityProduct, totalPrice 
+	select CartID, us.fullName, quantityProduct, totalPrice 
 	from cart ct
 	inner join user us on us.userId = ct.userId;
 end //
@@ -297,7 +297,7 @@ call select_all_cart();
 delimiter //
 create procedure select_all_cart_detail()
 begin
-	select ctdt.cartId, pd.productName, ctdt.quantity, ctdt.price
+	select CartDetailID, ctdt.cartId, pd.productName, ctdt.quantity, ctdt.price
     from cartDetails ctdt
     inner join cart ct on ct.cartId = ctdt.cartId
     inner join products pd on pd.productId = ctdt.productId;
@@ -310,7 +310,7 @@ call select_all_cart_detail();
 delimiter //
 create procedure select_all_bill()
 begin
-	select us.fullName, totalAmount, billDate 
+	select BillID, us.fullName, totalAmount, billDate 
 	from bill bl
 	inner join user us on us.userId = bl.userId;
 end //
@@ -322,14 +322,14 @@ call select_all_bill();
 delimiter //
 create procedure select_all_bill_detail()
 begin
-	select bldt.billId, pd.productName, bldt.quantity, bldt.price, totalprice
+	select BillDetailID, bldt.billId, pd.productName, bldt.quantity, bldt.price, totalprice
 	from billDetail bldt
 	inner join bill bl on bl.billId= bldt.billId
     inner join products pd on pd.productId = bldt.productId;
 end //
 delimiter ;
 
-call select_all_bill();
+call select_all_bill_detail();
 
 
 delimiter //
@@ -342,6 +342,27 @@ end //
 delimiter ;
 
 call select_all_VerityMoney();
+
+select * from user where Username = 'an1109' and Password ='0123';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
