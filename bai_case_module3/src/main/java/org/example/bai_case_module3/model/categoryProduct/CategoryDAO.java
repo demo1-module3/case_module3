@@ -69,7 +69,7 @@ public class CategoryDAO implements ICategoryDAO{
                 int id = rs.getInt("categoryId");
                 String name = rs.getString("categoryName");
                 String description = rs.getString("description");
-                String status = rs.getString("status").toUpperCase();
+                String status = rs.getString("status");
 
                 Status status1 = Status.valueOf(status);
                 CategoryProduct category = new CategoryProduct(id, name, description, status1);

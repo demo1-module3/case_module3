@@ -40,14 +40,13 @@ public class CartDAO implements ICartDAO {
             ResultSet resultSet = callableStatement.executeQuery();
 
             while (resultSet.next()) {
-                int cartId = Integer.parseInt(resultSet.getString("cartId"));
                 String fullName = resultSet.getString("fullName");
                 int quantityProduct = Integer.parseInt(resultSet.getString("quantityProduct"));
                 Double totalPrice = Double.parseDouble(resultSet.getString("totalPrice"));
 
                 User user = new User(fullName);
 
-                cartList.add(new Cart(cartId, user, quantityProduct, totalPrice));
+                cartList.add(new Cart(user, quantityProduct, totalPrice));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

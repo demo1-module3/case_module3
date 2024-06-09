@@ -11,10 +11,6 @@ public class Bill {
     public Bill() {
     }
 
-    public Bill(int billId) {
-        this.billId = billId;
-    }
-
     public Bill(User userId, Double totalAmount, Date billDate) {
         this.userId = userId;
         this.totalAmount = totalAmount;
