@@ -13,6 +13,9 @@
 <hr>
 <a href="supplier/list">danh sách Nha san xuat</a>
 <hr>
+
+<a href="verityMoney/list">danh sách verityMoney</a>
+
 <a href="user/list">danh sách Nguoi dung</a>
 
 </body>

@@ -22,10 +22,10 @@ public class VerityMoneyService {
     public void renderPageListBook(HttpServletRequest request,
                                    HttpServletResponse response) throws ServletException, IOException, SQLException {
         // goi model de lay data
-        List<VerityMoney> verityMoneys = this.verityMoneyDAO.getAllVerMoney();
+        List<VerityMoney> verityMoneys = this.verityMoneyDAO.selectAll();
         // gan data vao requet de gui xuong view
         request.setAttribute("verityMoneys", verityMoneys);
-        RequestDispatcher out = request.getRequestDispatcher("/views/categoryView/list.jsp");
+        RequestDispatcher out = request.getRequestDispatcher("/views/verityMoneyView/list.jsp");
         out.forward(request, response);
     }
 }

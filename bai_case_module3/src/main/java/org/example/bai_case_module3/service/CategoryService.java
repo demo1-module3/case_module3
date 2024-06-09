@@ -21,7 +21,7 @@ public class CategoryService {
     public void renderPageListBook(HttpServletRequest request,
                                    HttpServletResponse response) throws ServletException, IOException, SQLException {
         // goi model de lay data
-        List<CategoryProduct> categoryProducts = this.categoryDAO.getAllCategory();
+        List<CategoryProduct> categoryProducts = this.categoryDAO.selectAll();
         // gan data vao requet de gui xuong view
         request.setAttribute("categoryProducts", categoryProducts);
         RequestDispatcher out = request.getRequestDispatcher("/views/categoryView/list.jsp");

@@ -19,11 +19,23 @@ public class CategoryDAO implements ICategoryDAO{
         this.connection = dbConnection.getConnection();
     }
 
-    public List<CategoryProduct> getAllCategory() throws SQLException{
+    @Override
+    public void insertInto(CategoryProduct categoryProduct) throws SQLException {
+
+    }
+
+    @Override
+    public CategoryProduct selectById(int id) {
+        return null;
+    }
+
+    @Override
+    public List<CategoryProduct> selectAll() throws SQLException {
         List<CategoryProduct> categories = new ArrayList<>();
         String sql = "SELECT * FROM CategoryProduct";
 
-        try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement(sql);
             ResultSet rs = preparedStatement.executeQuery();
 
             while (rs.next()) {
@@ -37,7 +49,6 @@ public class CategoryDAO implements ICategoryDAO{
                 categories.add(category);
             }
         } catch (SQLException e) {
-            e.printStackTrace();
             throw new SQLException("Lỗi khi truy xuất sản phẩm danh mục", e);
         }
 
@@ -47,28 +58,13 @@ public class CategoryDAO implements ICategoryDAO{
     public static void main(String[] args) {
         CategoryDAO categoryDAO = new CategoryDAO();
         try {
-            List<CategoryProduct> categories = categoryDAO.getAllCategory();
+            List<CategoryProduct> categories = categoryDAO.selectAll();
             for (CategoryProduct category : categories) {
                 System.out.println(category);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-    }
-
-    @Override
-    public void insertInto(CategoryProduct categoryProduct) throws SQLException {
-
-    }
-
-    @Override
-    public CategoryProduct selectById(int id) {
-        return null;
-    }
-
-    @Override
-    public List<CategoryProduct> selectAll() {
-        return null;
     }
 
     @Override
