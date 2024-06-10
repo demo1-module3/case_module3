@@ -9,7 +9,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%List<CategoryProduct> categoryProducts = (List<CategoryProduct>) request.getAttribute("categories"); %>
-
 <html>
     <head>
         <title>Title</title>

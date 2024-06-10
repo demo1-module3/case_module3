@@ -43,7 +43,7 @@
                                 <div style="display: flex;">
                                     <form action="/verityMoney/edit" method="get" class="mt-3" style="margin-right: 10px">
                                         <input type="hidden" name="VerityMoneyId" value="${verityMoneys.verityMoneyId}">
-                                        <button type="submit" class="btn btn-Info" style="width: 80px;">Edit</button>
+                                        <button type="submit" class="btn btn-Info" style="width: 80px;background: cyan">Submit</button>
                                     </form>
 
                                     <form action="/verityMoney/delete" method="post" class="mt-3" onsubmit="return confirm('Bạn có chắc chắn muốn xóa danh mục này?');">
