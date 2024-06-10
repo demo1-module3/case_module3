@@ -33,7 +33,7 @@ public class AuthService {
         User userLogin = this.userDAO.findUserByAccount(username, password);
         if (userLogin != null) {
             HttpSession session = req.getSession();
-            session.setAttribute("userLogin", userLogin.getUsername());
+            session.setAttribute("userLogin", userLogin.getUserId());
 
             resp.sendRedirect("/product/list");
         } else {

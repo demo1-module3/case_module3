@@ -18,6 +18,16 @@ public class Products {
         this.productName = productName;
     }
 
+    public Products(String productName, CategoryProduct categoryId, Supplier supplierId, Double price, int quantity, String description, Status status) {
+        this.productName = productName;
+        this.categoryId = categoryId;
+        this.supplierId = supplierId;
+        this.price = price;
+        this.quantity = quantity;
+        this.description = description;
+        this.status = status;
+    }
+
     public Products(String productName, User userId, CategoryProduct categoryId, Supplier supplierId, Double price, int quantity, String description) {
         this.productName = productName;
         this.userId = userId;
