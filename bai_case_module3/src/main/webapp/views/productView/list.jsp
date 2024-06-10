@@ -35,6 +35,7 @@
 <body>
 <h1>All Product</h1>
 <table>
+    <a href="/product/create" class="btn btn-success">Create</a>
     <thead>
     <tr>
         <th>STT</th>
@@ -65,14 +66,14 @@
 
             <td>
                 <div style="display: flex;">
-                    <form action="cart/create" method="get" class="mt-3" style="margin-right: 10px">
-                        <input type="hidden" name="UserID" value="${user.userId}">
+                    <form action="/product/edit" method="get" class="mt-3" style="margin-right: 10px">
+                        <input type="hidden" name="ProductID" value="${product.productId}">
                         <button type="submit" class="btn btn-Info" style="width: 80px;">Edit</button>
                     </form>
 
-                    <form action="user/delete" method="post" class="mt-3"
+                    <form action="/product/delete" method="post" class="mt-3"
                           onsubmit="return confirm('Are you sure you want to delete this user?');">
-                        <input type="hidden" name="UserID" value="${user.userId}">
+                        <input type="hidden" name="ProductID" value="${product.productId}">
                         <button type="submit" class="btn btn-danger" style="width: 80px;">Delete</button>
                     </form>
                 </div>

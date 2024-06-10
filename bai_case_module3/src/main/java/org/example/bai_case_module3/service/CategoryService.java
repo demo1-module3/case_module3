@@ -32,10 +32,6 @@ public class CategoryService {
     }
 
     public void renderPageAddCategory(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        // Lấy danh sách các trạng thái (Active, Inactive) từ bảng CategoryProduct
-        List<CategoryProduct> categoryProducts = this.categoryDAO.selectAll();
-        // Điều hướng đến trang JSP để hiển thị form thêm mới CategoryProduct
-        request.setAttribute("categoryProducts", categoryProducts);
         RequestDispatcher out = request.getRequestDispatcher("/views/categoryView/categoryCreate.jsp");
         out.forward(request, response);
     }

@@ -343,12 +343,85 @@ delimiter ;
 
 call select_all_VerityMoney();
 
-select * from user where Username = 'an1109' and Password ='0123';
+DELIMITER //
+CREATE PROCEDURE AddProductToCart(
+    IN p_UserID INT,
+    IN p_ProductID INT
+)
+BEGIN
+    DECLARE v_CartID INT;
+    DECLARE v_ProductPrice DOUBLE;
+    DECLARE v_ProductTotalPrice DOUBLE;
+    DECLARE v_QuantityProduct INT DEFAULT 0;
+    DECLARE v_TotalPrice DOUBLE DEFAULT 0.00;
+    
+    -- Lấy giá sản phẩm
+    SELECT Price INTO v_ProductPrice FROM Products WHERE ProductID = p_ProductID;
+    
+    SET v_ProductTotalPrice = v_ProductPrice * 1;
+    
+    -- Kiểm tra xem người dùng đã có giỏ hàng chưa
+    SELECT CartID INTO v_CartID FROM Cart WHERE UserID = p_UserID;
+    
+    -- Nếu người dùng chưa có giỏ hàng, tạo một giỏ hàng mới
+    IF v_CartID IS NULL THEN
+        INSERT INTO Cart (UserID, QuantityProduct, TotalPrice)
+        VALUES (p_UserID, 1, 0.00);
+        SET v_CartID = LAST_INSERT_ID();
+    END IF;
+    
+    -- Kiểm tra xem sản phẩm đã có trong giỏ hàng chưa
+    IF EXISTS (SELECT 1 FROM CartDetails WHERE CartID = v_CartID AND ProductID = p_ProductID) THEN
+        -- Nếu sản phẩm đã có trong giỏ hàng, cập nhật số lượng và giá
+        UPDATE CartDetails
+        SET Quantity = Quantity + 1,
+            Price = Price + v_ProductTotalPrice
+        WHERE CartID = v_CartID AND ProductID = p_ProductID;
+    ELSE
+        -- Nếu sản phẩm chưa có trong giỏ hàng, thêm sản phẩm vào giỏ hàng
+        INSERT INTO CartDetails (CartID, ProductID, Quantity, Price)
+        VALUES (v_CartID, p_ProductID, 1, v_ProductTotalPrice);
+    END IF;
+    
+    -- Cập nhật tổng giá và số lượng sản phẩm trong giỏ hàng
+    SELECT SUM(Quantity), SUM(Price) INTO v_QuantityProduct, v_TotalPrice
+    FROM CartDetails
+    WHERE CartID = v_CartID;
+
+    UPDATE Cart
+    SET QuantityProduct = v_QuantityProduct,
+        TotalPrice = v_TotalPrice
+    WHERE CartID = v_CartID;
+END //
+DELIMITER ;
+
+CALL AddProductToCart(9, 12);
 
 
+delimiter //
+create procedure insert_into_product(in product_name varchar(50), in user_id int, in category_id int, in supplier_id int, in price_in double, in quantity_in int, in description_in varchar(255))
+begin
+	INSERT INTO Products (ProductName, UserID, CategoryID, SupplierID, Price, Quantity, Description) VALUES 
+						(product_name, user_id, category_id, supplier_id, price_in, quantity_in, description_in);
+end //
+delimiter ;
+
+call insert_into_product('iPhone 16 Pro Max', 4, 1, 1, 29990000.00, 50, 'Điện thoại Apple iPhone 16 Pro Max 2TB');
 
 
+delimiter //
+create procedure select_by_id_product(in productId_in int)
+begin
+	select ProductID, productName, us.fullName, ctpd.categoryName, spl.supplierName, price, quantity, pd.description, pd.status 
+	from products pd
+	inner join user us on us.userID = pd.userID
+	inner join categoryProduct ctpd on ctpd.categoryID = pd.categoryID
+	inner join supplier spl on spl.supplierID = pd.supplierID
+    where ProductID = productId_in;
+end //
+delimiter ;
 
+call select_by_id_product(50);
 
 
 
